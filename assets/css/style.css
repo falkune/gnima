@@ -1,0 +1,216 @@
+ :root {
+     --primary: #FF6B00;
+     --secondary: #2EC4B6;
+     --dark: #1A1A1A;
+     --light: #F8F9FA;
+ }
+
+ body {
+     font-family: 'Open Sans', sans-serif;
+     overflow-x: hidden;
+ }
+
+ h1,
+ h2,
+ h3,
+ h4 {
+     font-family: 'Poppins', sans-serif;
+     font-weight: 700;
+ }
+
+ /* Navigation */
+ .navbar {
+     background-color: var(--dark);
+     padding: 1rem 0;
+     transition: all 0.3s;
+ }
+
+ .navbar.scrolled {
+     background-color: rgba(26, 26, 26, 0.95);
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+ }
+
+ /* Bannière Hero */
+ .hero-section {
+     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/img/baniere.png');
+     background-size: cover;
+     background-position: center;
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     color: white;
+     text-align: center;
+ }
+
+ .hero-section h1 {
+     font-size: clamp(2.5rem, 5vw, 4rem);
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+ }
+
+ /* Sections communes */
+ .section-title {
+     position: relative;
+     margin-bottom: 3rem;
+ }
+
+ .section-title:after {
+     content: "";
+     position: absolute;
+     bottom: -10px;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 80px;
+     height: 4px;
+     background: var(--primary);
+ }
+
+ /* Section "Qui sommes-nous" */
+ .about-section {
+     padding: 6rem 0;
+     background-color: white;
+ }
+
+ .about-content {
+     position: relative;
+ }
+
+ .read-more {
+     color: var(--primary);
+     font-weight: 600;
+     text-decoration: none;
+     display: inline-block;
+     margin-top: 1rem;
+ }
+
+ .read-more:hover {
+     text-decoration: underline;
+ }
+
+ /* Styles pour la section Actions */
+ .action-card {
+     transition: all 0.3s ease;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+     border-radius: 15px !important;
+     overflow: hidden;
+ }
+
+ .action-card:hover {
+     transform: translateY(-10px);
+     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+ }
+
+ .action-icon {
+     width: 80px;
+     height: 80px;
+     background-color: var(--primary);
+ }
+
+ .action-card h3 {
+     color: var(--dark);
+     font-size: 1.5rem;
+ }
+
+ /* Responsive */
+ @media (max-width: 768px) {
+     .action-icon {
+         width: 60px;
+         height: 60px;
+     }
+
+     .action-card {
+         margin-bottom: 1.5rem;
+     }
+ }
+
+ /* Section Partenaires */
+ .partners-section {
+     padding: 5rem 0;
+     background-color: white;
+     overflow: hidden;
+ }
+
+ .partners-track {
+     display: flex;
+     animation: scroll 25s linear infinite;
+     width: max-content;
+ }
+
+ .partner-item {
+     flex: 0 0 auto;
+     margin: 0 2rem;
+     display: flex;
+     align-items: center;
+ }
+
+ .partner-item img {
+     height: 80px;
+     width: auto;
+     max-width: 180px;
+     object-fit: contain;
+ }
+
+ @keyframes scroll {
+     0% {
+         transform: translateX(0);
+     }
+
+     100% {
+         transform: translateX(-50%);
+     }
+ }
+
+ /* Section Produits */
+ .products-section {
+     padding: 6rem 0;
+     background-color: var(--light);
+ }
+
+ .product-card {
+     border-radius: 10px;
+     overflow: hidden;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+     transition: all 0.3s;
+     height: 100%;
+ }
+
+ .product-card:hover {
+     transform: translateY(-10px);
+     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+ }
+
+ .product-card img {
+     height: 250px;
+     object-fit: cover;
+ }
+
+ .whatsapp-btn {
+     background-color: #25D366;
+     color: white;
+     border: none;
+     padding: 0.5rem 1.5rem;
+     border-radius: 5px;
+     display: inline-flex;
+     align-items: center;
+     text-decoration: none;
+     transition: all 0.3s;
+ }
+
+ .whatsapp-btn:hover {
+     background-color: #128C7E;
+     color: white;
+ }
+
+ /* Responsive */
+ @media (max-width: 768px) {
+     .hero-section {
+         height: 80vh;
+     }
+
+     .partner-item {
+         margin: 0 1rem;
+     }
+
+     .partner-item img {
+         height: 60px;
+     }
+ }
