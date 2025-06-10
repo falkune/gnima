@@ -10,37 +10,380 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <style>
+        :root {
+            --primary: #FF6B00;  /* Orange énergique */
+            --secondary: #2EC4B6; /* Turquoise */
+            --dark: #1A1A1A;     /* Noir */
+            --light: #F8F9FA;    /* Gris clair */
+            --senegal-green: #00853F; /* Vert Sénégal */
+            --senegal-yellow: #FDEF42; /* Jaune Sénégal */
+            --senegal-red: #E31B23; /* Rouge Sénégal */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        /* .navbar {
+            background-color: var(--dark);
+            padding: 1rem 0;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(26, 26, 26, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        } */
+
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+            /* background-color: rgba(234, 250, 241, 1); */
+            background-color: rgba(234, 250, 241, 0.9);
+
+            /* background-color: rgba(230, 240, 255, 1); */
+            /* background-color: rgba(230, 240, 255, 0.9); */
+
+            /* background-color: rgba(248, 249, 250, 1); */
+            /* background-color: rgba(248, 249, 250, 0.9); */
+
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .senegal-flag {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(to right, 
+                var(--senegal-green) 33%, 
+                var(--senegal-yellow) 33% 66%, 
+                var(--senegal-red) 66%);
+        }
+
+        .senegal-star {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--senegal-green);
+            clip-path: polygon(
+                50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%
+            );
+            top: 17%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Version mobile */
+        @media (max-width: 768px) {
+            .senegal-flag {
+                height: 8px;
+            }
+            .senegal-star {
+                width: 10px;
+                height: 10px;
+            }
+        }
+        
+
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Sections communes */
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        /* Section "Qui sommes-nous" */
+        .about-section {
+            padding: 6rem 0;
+            background-color: white;
+        }
+
+        .about-content {
+            position: relative;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles pour la section Actions */
+        .action-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 15px !important;
+            overflow: hidden;
+        }
+
+        .action-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+        }
+
+        .action-card h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .action-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .action-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Section Partenaires */
+        .partners-section {
+            padding: 5rem 0;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .partners-track {
+            display: flex;
+            animation: scroll 25s linear infinite;
+            width: max-content;
+        }
+
+        .partner-item {
+            flex: 0 0 auto;
+            margin: 0 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .partner-item img {
+            height: 80px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Section Produits */
+        .products-section {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+
+        .product-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            height: 250px;
+            object-fit: cover;
+    }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 80vh;
+            }
+
+            .partner-item {
+                margin: 0 1rem;
+            }
+
+            .partner-item img {
+                height: 60px;
+            }
+        }
+
+
+
+
+        /* Style pour la section Jus */
+        #products p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Effet holographique pour les partenaires */
+        .partners-hologram {
+            perspective: 1000px;
+        }
+
+        .hologram-card {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(46, 196, 182, 0.3);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 0%,
+                rgba(46, 196, 182, 0.1) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            transform: rotate(30deg);
+            animation: hologramEffect 6s infinite linear;
+        }
+
+        @keyframes hologramEffect {
+            0% { transform: translateY(-100%) rotate(30deg); }
+            100% { transform: translateY(100%) rotate(30deg); }
+        }
+
+        .hologram-card img {
+            position: relative;
+            z-index: 2;
+            max-height: 80px;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 0 5px rgba(0,133,63,0.3));
+        }
+
+        /* Effet au survol */
+        .hologram-card:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 10px 30px rgba(46, 196, 182, 0.4);
+        }
+    </style>
 </head>
 <body>
+
     <!-- Navigation -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="assets/img/logo.png" alt="Logo Gnima Sport" height="40"> Gnima Sport
-            </a>
+            <a class="navbar-brand" href="index.html">Gnima Sport Solidarité</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">Qui sommes-nous</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#actions">Nos Actions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#values">Nos Valeurs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#partners">Partenaires</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">Nos Jus</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="a-propos.html">À Propos</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="index.html#actions">Nos Actions</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="produits.html">Nos Produits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
-    </nav> -->
+    </nav>
 
-    <!-- Bannière Hero -->
-    <header class="hero-section">
-        <div class="container">
-            <h1 class="mb-4">Gnima Sport Solidarité</h1>
-            <p class="lead mb-5">Le sport au service de la solidarité</p>
-            <a href="#about" class="btn btn-primary btn-lg px-4">Découvrir</a>
+    <!-- Bannière -->
+    <header class="about-hero">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 mb-4">Gnima Sport Solidarité</h1>
+                    <p class="lead">Promouvoir le sport, l'inclusion et la solidarité dans les banlieues</p>
+                </div>
+            </div>
+            <div class="senegal-flag">
+                <div class="senegal-star"></div>
+            </div>
         </div>
     </header>
 
@@ -51,11 +394,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="about-content">
-                        <p class="lead text-center">Fondée par GNIMA FAYE, ancienne athlète de haut niveau, l'association Gnima Sport Solidarité œuvre depuis [année] pour promouvoir le sport comme vecteur d'inclusion sociale.</p>
+                        <p class="">Fondée par GNIMA FAYE, ancienne athlète de haut niveau, l'association Gnima Sport Solidarité œuvre depuis [année] pour promouvoir le sport comme vecteur d'inclusion sociale.</p>
                         <p>Notre mission est de rendre le sport accessible à tous, tout en développant des initiatives solidaires au sein des communautés locales. À travers des compétitions sportives, des ateliers éducatifs et des actions concrètes, nous favorisons le vivre-ensemble et le dépassement de soi.</p>
                         <p>Nous produisons également des jus naturels issus de fruits locaux, dont les bénéfices soutiennent nos actions sociales.</p>
                         <div class="text-center">
-                            <a href="about.html" class="read-more">Lire plus <i class="fas fa-arrow-right ms-1"></i></a>
+                            <a href="a-propos.html" class="read-more">Lire plus <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -75,11 +418,6 @@
                         <i class="fas fa-medal fa-2x text-white"></i>
                     </div>
                     <h3 class="mb-3">Compétitions sportives</h3>
-                    <!-- <ul class="list-unstyled text-start">
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Tournois intergénérationnels</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Événements pour tous niveaux</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Championnats locaux</li>
-                    </ul> -->
                     <p>Organisées pour favoriser l'engagement, la discipline et l'esprit d'équipe.</p>
                     <div class="mt-auto">
                         <a href="#" class="btn btn-outline-primary">Voir le calendrier</a>
@@ -94,11 +432,6 @@
                         <i class="fas fa-graduation-cap fa-2x text-white"></i>
                     </div>
                     <h3 class="mb-3">Ateliers & Formations</h3>
-                    <!-- <ul class="list-unstyled text-start">
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Nutrition sportive</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Préparation physique</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Gestion du stress</li>
-                    </ul> -->
                     <p>Organiser des ateliers de formation pour tous : former les femmes à la fabrication de jus naturels, partager des savoir-faire et encourager l’autonomie.</p>
                     <div class="mt-auto">
                         <a href="#" class="btn btn-outline-primary">Découvrir les programmes</a>
@@ -113,11 +446,6 @@
                         <i class="fas fa-hands-helping fa-2x text-white"></i>
                     </div>
                     <h3 class="mb-3">Solidarité & Inclusion</h3>
-                    <!-- <ul class="list-unstyled text-start">
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Handisport</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Actions dans les quartiers</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Collectes solidaires</li>
-                    </ul> -->
                     <p>Des événements pour sensibiliser aux enjeux sociaux et mobiliser la communauté.</p>
                     <div class="mt-auto">
                         <a href="#" class="btn btn-outline-primary">S'impliquer</a>
@@ -163,17 +491,16 @@
         </div>
     </section>
 
-    <!-- Section "Nos Jus" -->
+    <!-- Section "Nos Jus"
     <section id="products" class="products-section">
         <div class="container">
             <h2 class="text-center section-title">Nos Jus Naturels</h2>
             <div class="row g-4">
-                <!-- Jus 1 -->
                 <div class="col-md-4">
                     <div class="product-card card">
-                        <img src="assets/img/jus.jpg" class="card-img-top" alt="Jus de Mangue">
+                        <img src="assets/img/produits/bouy2.jpeg" class="card-img-top" alt="Sirop de bouye">
                         <div class="card-body text-center">
-                            <h4 class="card-title">Jus de Mangue</h4>
+                            <h4 class="card-title">Sirop de bouye</h4>
                             <p class="text-muted">100% pur fruit, sans conservateurs</p>
                             <p class="fw-bold" style="color: var(--primary);">5€ / bouteille</p>
                             <a href="https://wa.me/[VOTRE-NUMERO]?text=Je%20souhaite%20commander%20du%20jus%20de%20mangue" class="whatsapp-btn">
@@ -183,12 +510,11 @@
                     </div>
                 </div>
                 
-                <!-- Jus 2 -->
                 <div class="col-md-4">
                     <div class="product-card card">
-                        <img src="assets/img/jus.jpg" class="card-img-top" alt="Jus de Bissap">
+                        <img src="assets/img/produits/jus5.jpeg" class="card-img-top" alt="Sirop de Bissap">
                         <div class="card-body text-center">
-                            <h4 class="card-title">Jus de Bissap</h4>
+                            <h4 class="card-title">Sirop de Bissap</h4>
                             <p class="text-muted">Riche en antioxydants</p>
                             <p class="fw-bold" style="color: var(--primary);">4€ / bouteille</p>
                             <a href="https://wa.me/[VOTRE-NUMERO]?text=Je%20souhaite%20commander%20du%20jus%20de%20bissap" class="whatsapp-btn">
@@ -198,12 +524,11 @@
                     </div>
                 </div>
                 
-                <!-- Jus 3 -->
                 <div class="col-md-4">
                     <div class="product-card card">
-                        <img src="assets/img/jus.jpg" class="card-img-top" alt="Jus Tropical">
+                        <img src="assets/img/produits/jus2.jpeg" class="card-img-top" alt="Sirop de Tamarin">
                         <div class="card-body text-center">
-                            <h4 class="card-title">Jus Tropical</h4>
+                            <h4 class="card-title">Sirop de Tamarin</h4>
                             <p class="text-muted">Mélange de fruits locaux</p>
                             <p class="fw-bold" style="color: var(--primary);">6€ / bouteille</p>
                             <a href="https://wa.me/[VOTRE-NUMERO]?text=Je%20souhaite%20commander%20du%20jus%20tropical" class="whatsapp-btn">
@@ -214,48 +539,59 @@
                 </div>
             </div>
         </div>
+    </section> -->
+
+    <!-- Section "Nos Jus" Modifiée -->
+    <section id="products" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Image à gauche -->
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="assets/img/produits/produits.jpeg" alt="Nos jus naturels" class="img-fluid rounded shadow">
+                </div>
+                
+                <!-- Texte à droite avec bordure verte -->
+                <div class="col-lg-6 ps-lg-5">
+                    <div class="ps-lg-4" style="border-left: 4px solid var(--senegal-green); padding-left: 1.5rem;">
+                        <h2 class="mb-4">Nos Jus Naturels</h2>
+                        <p class="lead">Dans une démarche éthique et solidaire, nous produisons des jus naturels artisanaux, fabriqués localement à partir de fruits frais.</p>
+                        <p>Cette activité permet de financer nos projets, tout en encourageant une alimentation saine et locale.</p>
+                        <p>Parmi nos créations : jus de bissap, gingembre, baobab, mangue, et bien plus. Une partie des bénéfices est directement réinvestie dans nos actions sportives et solidaires.</p>
+                        <a href="produits.html" class="btn btn-primary mt-3">Découvrir tous nos produits</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
      <!-- Section "Nos Partenaires" -->
-    <section id="partners" class="partners-section container">
+    <!-- <section id="partners" class="partners-section container">
         <div class="">
             <h2 class="text-center section-title">Nos Partenaires</h2>
             
             <div class="partners-container">
                 <div class="partners-track">
-                    <!-- Liste des partenaires -->
                     <div class="partner-item">
-                        <img src="assets/img/gmd.png" alt="GRAND MOULIN DE DAKAR">
+                        <img src="assets/img/partenaires/gmd.png" alt="GRAND MOULIN DE DAKAR">
                     </div>
                     <div class="partner-item">
-                        <img src="assets/img/casamancaise.jpg" alt="CASAMANCAISE">
+                        <img src="assets/img/partenaires/casamancaise.jpg" alt="CASAMANCAISE">
                     </div>
                     <div class="partner-item">
-                        <img src="assets/img/danone.png" alt="DANONE">
+                        <img src="assets/img/partenaires/danone.png" alt="DANONE">
                     </div>
                     <div class="partner-item">
-                        <img src="assets/img/chips.jpeg" alt="CHIPS CRAX">
+                        <img src="assets/img/partenaires/chips.jpeg" alt="CHIPS CRAX">
                     </div>
                     <div class="partner-item">
-                        <img src="assets/img/sonatel.svg" alt="SONATEL">
+                        <img src="assets/img/partenaires/sonatel.svg" alt="SONATEL">
                     </div>
                     <div class="partner-item">
-                        <img src="assets/img/elton.jpg" alt="ELTON">
+                        <img src="assets/img/partenaires/elton.jpg" alt="ELTON">
                     </div>
                     <div class="partner-item">
-                        <img src="assets/img/sedima.png" alt="SEDIMA">
+                        <img src="assets/img/partenaires/sedima.png" alt="SEDIMA">
                     </div>
-                    
-                    <!-- Duplication pour bouclage fluide -->
-                    <!-- <div class="partner-item">
-                        <img src="assets/img/gmd.png" alt="GRAND MOULIN DE DAKAR">
-                    </div>
-                    <div class="partner-item">
-                        <img src="assets/img/casamancaise.jpg" alt="CASAMANCAISE">
-                    </div>
-                    <div class="partner-item">
-                        <img src="assets/img/danone.png" alt="DANONE">
-                    </div> -->
                 </div>
             </div>
             
@@ -263,79 +599,98 @@
                 <a href="#contact" class="btn btn-primary btn-lg">Devenir Partenaire</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Section Contact -->
-    <section id="contact" class="py-5 bg-dark text-white">
+    <!-- Section Partenaires avec effet holographique -->
+    <section id="partners" class="py-5 bg-white position-relative">
         <div class="container">
-            <h2 class="text-center section-title" style="color: white;">Contactez-nous</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <form>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Nom" required>
+            <h2 class="text-center section-title mb-5">Nos Partenaires</h2>
+            
+            <div class="partners-hologram">
+                <!-- Rangée 1 -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/gmd-logo.png" alt="GRAND MOULIN DE DAKAR" class="img-fluid">
                         </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/logo-casamancaise.png" alt="CASAMANCAISE" class="img-fluid">
                         </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="4" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
-                        </div>
-                    </form>
-                    
-                    <div class="mt-5 text-center">
-                        <h4 class="mb-3">Ou contactez-nous directement</h4>
-                        <p><i class="fas fa-phone me-2"></i> +221 77 123 45 67</p>
-                        <p><i class="fas fa-envelope me-2"></i> contact@gnimasport.com</p>
-                        <div class="social-icons mt-4">
-                            <a href="#" class="text-white mx-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                            <a href="#" class="text-white mx-3"><i class="fab fa-instagram fa-lg"></i></a>
-                            <a href="https://wa.me/[VOTRE-NUMERO]" class="text-white mx-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/Danone-Logo.png" alt="DANONE" class="img-fluid">
                         </div>
                     </div>
                 </div>
+                
+                <!-- Rangée 2 -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/chips-logo.png" alt="CHIPS CRAX" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/sonatel-logo.png" alt="SONATEL" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/elton-logo.png" alt="ELTON" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- Rangée 3 -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="hologram-card">
+                            <img src="assets/img/partenaires/sedima.png" alt="SEDIMA" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="contact.html" class="btn btn-primary btn-lg">Devenir Partenaire</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 bg-black text-white">
-        <div class="container text-center">
-            <!-- <img src="assets/img/logo-white.png" alt="Logo" height="50" class="mb-3"> -->
-            <p class="mb-2">Gnima Sport Solidarité &copy; 2025 - Tous droits réservés</p>
-            <p class="mb-0">Association à but non lucratif</p>
+    <footer class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <p>Association à but non lucratif dédiée à la promotion du sport et à l'entraide communautaire.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Thiaroye Tally DIALLO, Fass III Villa N°38</p>
+                    <p><i class="fas fa-phone me-2"></i> (+221) 78 100 13 4</p>
+                    <p><i class="fas fa-envelope me-2"></i> gnimasportsolidarite@gmail.com</p>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Réseaux Sociaux</h4>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                    <div class="mt-3">
+                        <img src="assets/img/logos/drapeau.png" alt="Sénégal" height="30">
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="text-center">
+                <p class="mb-0">Gnima Sport Solidarité &copy; 2025 - Tous droits réservés</p>
+            </div>
         </div>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Scripts personnalisés -->
-    <script>
-        // Navbar scroll effect
-        // window.addEventListener('scroll', function() {
-        //     const navbar = document.querySelector('.navbar');
-        //     if (window.scrollY > 50) {
-        //         navbar.classList.add('scrolled');
-        //     } else {
-        //         navbar.classList.remove('scrolled');
-        //     }
-        // });
-        
-        // Pause animation on hover for partners
-        // const partnersTrack = document.querySelector('.partners-track');
-        // if (partnersTrack) {
-        //     partnersTrack.addEventListener('mouseenter', function() {
-        //         this.style.animationPlayState = 'paused';
-        //     });
-            
-        //     partnersTrack.addEventListener('mouseleave', function() {
-        //         this.style.animationPlayState = 'running';
-        //     });
-        // }
-    </script>
 </body>
 </html>
