@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements - Gnima Sport Solidarité</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B00;  /* Orange énergique */
+            --secondary: #2EC4B6; /* Turquoise */
+            --dark: #1A1A1A;     /* Noir */
+            --light: #F8F9FA;    /* Gris clair */
+            --senegal-green: #00853F; /* Vert Sénégal */
+            --senegal-yellow: #FDEF42; /* Jaune Sénégal */
+            --senegal-red: #E31B23; /* Rouge Sénégal */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Bannière Hero */
+        .events-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/img/events-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .senegal-flag {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to right, 
+                var(--senegal-green) 33%, 
+                var(--senegal-yellow) 33% 66%, 
+                var(--senegal-red) 66%);
+        }
+        
+        .senegal-star {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--senegal-green);
+            clip-path: polygon(
+                50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%
+            );
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Section Événements - Disposition artistique */
+        .event-section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .event-section:nth-child(odd) {
+            background-color: white;
+        }
+
+        .event-section:nth-child(even) {
+            background-color: var(--light);
+        }
+
+        .event-header {
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .event-header h2 {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .event-header::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary);
+            z-index: 1;
+        }
+
+        .event-date-badge {
+            background-color: var(--senegal-green);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* Disposition artistique des images */
+        .event-gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 1rem;
+            height: 500px;
+            margin: 3rem 0;
+        }
+
+        .event-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .event-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Positionnement aléatoire des images */
+        .img-1 {
+            grid-column: 1 / 5;
+            grid-row: 1 / 3;
+        }
+        .img-2 {
+            grid-column: 5 / 9;
+            grid-row: 2 / 4;
+        }
+        .img-3 {
+            grid-column: 9 / 13;
+            grid-row: 1 / 3;
+        }
+        .img-4 {
+            grid-column: 3 / 7;
+            grid-row: 3 / 5;
+        }
+        .img-5 {
+            grid-column: 7 / 11;
+            grid-row: 3 / 5;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .event-gallery {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .events-hero {
+                height: 40vh;
+            }
+            
+            .event-gallery {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 200px);
+                height: auto;
+            }
+            
+            .img-1, .img-2, .img-3, .img-4, .img-5 {
+                grid-column: auto;
+                grid-row: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Gnima Sport Solidarité</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="a-propos.html">À Propos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="produits.html">Nos Produits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bannière Hero -->
+    <header class="events-hero">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 mb-4">Nos Événements</h1>
+                    <p class="lead">Des moments sportifs et solidaires qui marquent les esprits</p>
+                </div>
+            </div>
+            <div class="senegal-flag">
+                <div class="senegal-star"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Événement 1 -->
+
+    <section class="event-section">
+        <div class="container">
+            <div class="event-header">
+                <h2>Banlieue Sprint</h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <!-- <div class="event-date-badge">15 Décembre 2024 - Centre Social de Yeumbeul</div> -->
+                    <p class="lead">Notre événement phare qui transforme les rues de la banlieue en piste d'athlétisme éphémère. Une journée où le quartier entier se rassemble autour du sport, dans une ambiance festive et familiale. Courses par catégories d'âge, relais intergénérationnels et remise de prix suivie d'un grand repas communautaire.</p>
+                    <video src="./assets/img/evenements/b-sprint.mp4" muted autoplay></video>
+                </div>
+            </div>
+            
+            <div class="event-gallery">
+                <img src="assets/img/evenements/b-sprint1.jpeg" alt="Atelier nutrition" class="img-1">
+                <img src="assets/img/evenements/b-sprint2.jpeg" alt="Dégustation" class="img-2">
+                <img src="assets/img/evenements/b-sprint3.jpeg" alt="Présentation" class="img-3">
+                <img src="assets/img/evenements/b-sprint4.jpeg" alt="Échanges" class="img-4">
+                <img src="assets/img/evenements/b-sprint5.jpeg" alt="Participants" class="img-5">
+            </div>
+            
+            <div class="text-center mt-4">
+                <!-- <a href="#" class="btn btn-primary btn-lg">Réserver sa place</a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Événement 2 -->
+    <section class="event-section">
+        <div class="container">
+            <div class="event-header">
+                <h2>Atelier de formation</h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <!-- <div class="event-date-badge">30 Novembre 2024 - Thiaroye</div> -->
+                    <p class="lead">Nous sommes fiers d’annoncer que 20 jeunes filles de notre association Gnima Sport Solidarité ont récemment bénéficié d'une formation enrichissante grâce au soutien précieux de Grand Moulin.</p>
+                </div>
+            </div>
+            
+            <!-- Galerie artistique -->
+            <div class="event-gallery">
+                <img src="assets/img/formations/femmes.jpeg" alt="Banlieue Sprint" class="img-1">
+                <!-- <img src="assets/img/events/sprint2.jpg" alt="Participants" class="img-2">
+                <img src="assets/img/events/sprint3.jpg" alt="Course enfants" class="img-3">
+                <img src="assets/img/events/sprint4.jpg" alt="Remise des prix" class="img-4">
+                <img src="assets/img/events/sprint5.jpg" alt="Ambiance festive" class="img-5"> -->
+            </div>
+            
+            <!-- <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary btn-lg me-3">Voir le programme complet</a>
+                <a href="#" class="btn btn-outline-primary btn-lg">S'inscrire</a>
+            </div> -->
+        </div>
+    </section>
+    
+    <!-- Événement 3 -->
+    <!-- <section class="event-section">
+        <div class="container">
+            <div class="event-header">
+                <h2>Tournoi de Foot Solidaire</h2>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="event-date-badge">28 Décembre 2024 - Stade de Pikine</div>
+                    <p class="lead">Compétition interquartiers où chaque but marqué se transforme en don de fournitures scolaires. 16 équipes s'affrontent dans une ambiance fair-play. En parallèle : stands de sensibilisation, animations pour enfants et vente de nos jus au profit des actions sociales. La finale sera arbitrée par une personnalité du sport sénégalais.</p>
+                </div>
+            </div>
+            
+            <div class="event-gallery">
+                <img src="assets/img/events/foot1.jpg" alt="Match de foot" class="img-1">
+                <img src="assets/img/events/foot2.jpg" alt="Équipes" class="img-2">
+                <img src="assets/img/events/foot3.jpg" alt="Public" class="img-3">
+                <img src="assets/img/events/foot4.jpg" alt="Remise des dons" class="img-4">
+                <img src="assets/img/events/foot5.jpg" alt="Cérémonie" class="img-5">
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary btn-lg me-3">Voir les équipes inscrites</a>
+                <a href="#" class="btn btn-outline-primary btn-lg">Sponsoriser un don</a>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- CTA Final -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">Vous organisez un événement sportif ?</h2>
+            <p class="lead mb-5">Collaborons pour créer un projet sur mesure qui allie sport et solidarité</p>
+            <a href="contact.html" class="btn btn-light btn-lg me-3">Nous contacter</a>
+            <!-- <a href="#" class="btn btn-outline-light btn-lg">Voir nos partenariats</a> -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <p>Association à but non lucratif dédiée à la promotion du sport et à l'entraide communautaire.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Thiaroye Tally DIALLO, Fass III Villa N°38</p>
+                    <p><i class="fas fa-phone me-2"></i> (+221) 78 461 33 11</p>
+                    <p><i class="fas fa-envelope me-2"></i> gnimasportsolidarite@gmail.com</p>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Réseaux Sociaux</h4>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                    <div class="mt-3">
+                        <img src="assets/img/logos/drapeau.png" alt="Sénégal" height="30">
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="text-center">
+                <p class="mb-0">Gnima Sport Solidarité &copy; 2025 - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
